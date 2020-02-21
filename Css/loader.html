@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<style type="text/css">
+	
+	html {
+  background: #ecf0f1;
+}
+
+body, h1, h2 {
+  font-family: Helvetica, Sans-serif; 
+  color: #2c3e50;
+  margin:0; 
+  padding:0; 
+  font-weight:300;
+}
+
+h1 {
+  font-size: 80px;
+}
+
+h2 {
+  font-size: 36px;
+  opacity: 0;
+  animation: appear 1s 3s forwards;
+}
+
+.container{
+  margin:4em;
+  text-align: center;
+}
+.loader{
+  border:16px solid grey;
+  width:120px;
+  height:120px;
+  margin:auto;
+  border-top-color:green;
+  border-bottom-color:blue;
+  border-radius:50%;
+  animation:spin2 2s linear infinite;
+}
+
+@keyframes spin{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
+}
+@keyframes spin2{
+  0%{transform:rotate(0deg) scale(1);}
+  25%{border-top-color:red;
+  border-bottom-color:red;}
+   50%{border-top-color:yellow;
+  border-bottom-color:yellow;
+     
+  }
+   75%{border-top-color:pink;
+  border-bottom-color:pink;}
+  100%{transform:rotate(720deg) scale(1);}
+}
+
+</style>
+
+<body>
+	<div class="container">
+    <h1>This page takes forever to load.</h1>
+  <div class="loader"></div>
+</div>
+
+
+</body>
+</html>
