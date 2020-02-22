@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<style type="text/css">
+	
+	body{
+		margin:0px;
+	}
+
+	nav{
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+	}
+
+	a{
+		font-size: 40px;
+		margin:15px;
+		text-decoration: none;
+		color: grey;
+		font-family: Arial;
+		border-bottom: blue;
+		transition: color 0.5s ease-out;
+	}
+
+	i{
+		margin-right: 5px;
+	}
+
+	a:hover{
+		color: blue;
+	}
+
+	@media screen and (max-width: 920px){
+		nav{
+			justify-content: center;
+		}
+		a{
+			font-size: 25px;
+		}
+	}
+
+	@media screen and (max-width: 600px){
+		nav{
+			flex-direction: column;
+			align-content: center;
+			background:lightblue;
+		}
+	}
+
+
+
+</style>
+
+
+<body>
+	<nav>
+		<a href=""><i class="fa fa-home"></i>Home</a>
+		<a href=""><i class="fa fa-question"></i>About</a>
+		<a href=""><i class="fa fa-phone"></i>Contact</a>
+		<a href=""><i class="fa fa-pen"></i>Dogs</a>
+	</nav>
+
+</body>
+</html>
