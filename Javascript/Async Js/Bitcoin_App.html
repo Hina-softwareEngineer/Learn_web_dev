@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Bitcoin Current Price is: <span id="price"></span></h1>
+
+	<button id="button">Refresh Data</button>
+
+	<script type="text/javascript">
+		var price=document.querySelector("#price");
+	var btn=document.querySelector("#button");
+	btn.addEventListener("click",function(){
+
+  	var XHR=new XMLHttpRequest(); 
+  	XHR.onreadystatechange=function(){
+    	if (XHR.readyState==4 && XHR.status==200){
+      		var prices=JSON.parse(XHR.responseText).bpi.USD.rate;
+      //price.textContent=prices;
+      	price.innerText=prices+" USD";
+    }
+  }
+  	XHR.open("GET","https://api.coindesk.com/v1/bpi/currentprice.json");
+  	XHR.send();
+});
+	</script>
+
+</body>
+</html>
