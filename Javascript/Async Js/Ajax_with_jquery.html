@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<button id="btn">Click Me</button>
+	<button id="getBtn">GET()</button>
+
+	<button id="postBtn">POST()</button>
+
+	<button id="getJSONBtn">GETJSON()</button>
+
+
+	<script type="text/javascript">
+		$('#btn').click(function(){
+			 $.ajax({
+    				method: "GET",
+    				url: "https://baconipsum.com/api/?type=meat-and-filler",
+    				dataType: 'json'
+  					})
+  				.done(addP)
+  				.fail(function(){
+    						alert("OH NO! FAILED!");
+  				})
+		});
+
+			function addP (data){
+			  console.log(data);
+			  $("p").text(data[0]);
+			}
+
+			//-------------get,post,getJSON-----------//
+			$("#getBtn").click(function(){
+			  $.get('https://api.github.com/users/colt')
+			  .done(function(data){
+			    console.log(data);
+			  })
+			  .fail(function(){
+			    console.log("ERROR!");
+			  })
+			});
+
+			$("#postBtn").click(function(){
+			 var data = {name: "Charlie", city: "Florence"};
+			 $.post("www.catsarecoolandsoaredogs.com",data)
+			  .done(function(data){
+			   console.log("HI!");
+			 })
+			  .fail(function(){
+			   console.log("ERROR!");
+			 })
+			});
+
+			$("#getJSONBtn").click(function(){
+			  $.getJSON("https://api.github.com/users/colt")
+			  .done(function(data){
+			    console.log(data);
+			  })
+			  .fail(function(){
+			    console.log("PROBLEM!");
+			  })
+			});
+	
+	</script>
+</body>
+</html>
