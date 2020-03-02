@@ -4,7 +4,7 @@ var db=require("../models");
 var helpers=require("../helpers/todos")
 
 
-router.get('/')
+router.route('/')
 .get(helpers.getTodos)
 .post(helpers.createTodo);
 
