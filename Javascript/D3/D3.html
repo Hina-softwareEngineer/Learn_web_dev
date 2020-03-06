@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js" integrity="sha256-m0QmIsBXcOMiETRmpT3qg2IQ/i0qazJA2miCHzOmS1Y=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>D3 and the DOM</title>
+</head>
+<body>
+  <h1 id="page-title">This is my first D3 example!</h1>
+  <p class="first-paragraph">Here's my first paragraph.</p>
+  <p>Here are some reasons why d3 is cool:</p>
+  <ol>
+    <li>Makes data more engaging.</li>
+    <li>Has built-in math helpers.</li>
+    <li>Supports graph animations.</li>
+    <li>Makes drawing graph axes a breeze!</li>
+  </ol>
+  <div class="outer">
+    Here's an outer div.
+    <div>
+      Here's an inner div.
+      <div>
+        Here's the last div.
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+<script type="text/javascript">
+	d3
+//{event: null, format: ƒ, formatPrefix: ƒ, timeFormat: ƒ, timeParse: ƒ, …}
+d3.select("#page-title")
+//Pt {_groups: Array(1), _parents: Array(1)}
+//d3.select("#page-title")._groups[0]
+[h1#page-title]
+d3.select(".outer")._groups[0]
+//[div.outer]
+d3.select("#page-title").style("background-color","red")
+//Pt {_groups: Array(1), _parents: Array(1)}
+d3.select("#page-title").style("background-color","red").style("color","green")
+//Pt {_groups: Array(1), _parents: Array(1)}
+d3.select("#page-title").style("background-color","red").style("color","green").attr("class","new_class")
+//Pt {_groups: Array(1), _parents: Array(1)}
+d3.select("#page-title").style("background-color","red").style("color","green").attr("class","new_class").text("D3 is cool")
+//Pt {_groups: Array(1), _parents: Array(1)}
+d3.select("#page-title").style("background-color","red").style("li").style("color")
+//VM679:1 Uncaught TypeError: d3.select(...).style(...).style(...).style is not a function
+  //  at <anonymous>:1:70
+//(anonymous) @ VM679:1
+d3.select("#page-title").style("color")
+//"green"
+d3.select("#page-title").style("background-color","red").style("color","green").attr("class","new_class").text("D3 is cool").classed("new_class",true)
+//Pt {_groups: Array(1), _parents: Array(1)}
+d3.select("#page-title").style("background-color","red").style("color","green").attr("class","new_class").text("D3 is cool").classed("new_class",false)
+//Pt {_groups: Array(1), _parents: Array(1)}
+
+d3.selectAll("li")
+//Pt {_groups: Array(1), _parents: Array(1)}
+d3.selectAll("li").style("font-size",function(){return Math.random()*40+"px"});
+//Pt {_groups: Array(1), _parents: Array(1)}
+d3.selectAll("li").style("font-size",function(){return Math.random()*40+"px"});
+//Pt {_groups: Array(1), _parents: Array(1)}
+
+d3.selectAll("li").style("background-color",function(_,idx){return idx%2==0?"grey":"blue"});
+//Pt {_groups: Array(1), _parents: Array(1)}
+d3.select(".outer").style("color","purple")
+.select("div").style('font-size','30px').style('background-color','orange').select("div").style("border","8px solid blue");
+//Pt {_groups: Array(1), _parents: Array(1)}
+</script>
+
