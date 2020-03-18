@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './Navbar.css';
+import PropTypes from 'prop-types'
 
 class Navbar extends Component{
     static defaultProps = {
