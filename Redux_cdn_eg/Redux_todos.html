@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
+    
+    </head>
+    <body>
+        <ul id="todos">
+
+        </ul>
+        <form action="#">
+            <label for="task">Task : </label>
+            <input type="text" name='task' id='task'></input>
+            <button>Add Todo</button>
+        </form>
+       
+        
+        <script>
+           const initialState = {
+            todos: [],
+            id: 0
+            };
+
+            function rootReducer(state = initialState, action) {
+            switch (action.type) {
+                case "ADD_TODO":
+                var newState = { ...state };
+                newState.id++;
+                return {
+                    ...newState,
+                    todos: [...newState.todos, { task: action.task, id: newState.id }]
+                };
+                case "REMOVE_TODO":
+                let todos = state.todos.filter(val => val.id !== +action.id);
+                return { ...state, todos };
+                default:
+                return state;
+            }
+            }
+
+            const store = Redux.createStore(
+            rootReducer,
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+            );
+
+
+            $(document).ready(function() {
+            $("ul").on("click", "button", function(event) {
+                store.dispatch({
+                type: "REMOVE_TODO",
+                id: $(event.target).attr("id")
+                });
+                $(event.target)
+                .parent()
+                .remove();
+            });
+
+            $("form").on("submit", function(event) {
+                event.preventDefault();
+                let newTask = $("#task").val();
+                store.dispatch({
+                type: "ADD_TODO",
+                task: newTask
+                });
+                let currentState = store.getState();
+                let $newLi = $("<li>", {
+                text: newTask
+                });
+                let $newButton = $("<button>", {
+                text: "X",
+                id: currentState.id
+                });
+                $newLi.append($newButton);
+                $("#todos").append($newLi);
+                $("form").trigger("reset");
+            });
+            });
+
+        </script>
+    </body>
+</html>

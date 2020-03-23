@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
+    </head>
+    <body>
+        <h1 id="counter"></h1>
+
+        <button id="increment">INCREMENT</button>
+        <button id="decrement">DECREMENT</button>
+        
+        <script>
+            // we need a reducer
+            //we need resuxstore and initialstate
+            // we need way of changing state
+
+            const initialstate={count:0};
+
+            function rootReducer(state=initialstate,action){
+                switch(action.type){
+                    case 'INCREMENT':
+                        var newState={...state}
+                        newState.count++;
+                        return newState;
+                    case 'DECREMENT':
+                    var newState={...state}
+                        newState.count--;
+                        return newState;
+                    default:
+                        return state;
+                }
+            };
+
+            const store=Redux.createStore(rootReducer);
+
+            $(document).ready(function(){
+
+                $("#increment").on('click',function(){
+                    store.dispatch({type:"INCREMENT"});
+                    let currentState=store.getState();
+                    $("#counter").text(currentState.count);
+                });
+                $("#decrement").on('click',function(){
+                    store.dispatch({type:'DECREMENT'});
+                    let currentState=store.getState();
+                    $("#counter").text(currentState.count);
+                })
+
+            });
+
+        </script>
+
+        
+    </body>
+</html>
