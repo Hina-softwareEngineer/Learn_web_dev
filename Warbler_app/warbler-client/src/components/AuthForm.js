@@ -100,7 +100,10 @@ class AuthForm extends Component {
 
     this.props.onAuth(authType, this.state)
     .then(() => {
-      console.log("LOGGED IN!");
+      this.props.history.push("/");
+    })
+    .catch(()=>{
+        return;
     });
   };
 
@@ -110,7 +113,12 @@ class AuthForm extends Component {
 
   render() {
     const { email, username, password, profileImageUrl } = this.state;
-    const { signUp, heading, buttonText } = this.props;
+    const { signUp, heading, buttonText ,errors, history,removeError } = this.props;
+
+    history.listen(()=>
+    {
+      removeError();
+    });
 
     return (
       <div>
@@ -118,7 +126,7 @@ class AuthForm extends Component {
           <div className="col-md-6">
             <form onSubmit={this.handleSubmit}>
               <h2>{heading}</h2>
-
+    {errors.message && <div className="alert alert-danger">{errors.message}</div>}
               <label htmlFor="email">E-mail</label>
               <input
                 autoComplete="off"
